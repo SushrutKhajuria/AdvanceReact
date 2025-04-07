@@ -1,17 +1,51 @@
-import Expenses from "./components/Expenses/Expenses";
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 function App() {
-  const expenses = [
-    { id: 1, title: "Insurance", date: new Date(2023, 7, 15), price: 100 },
-    { id: 2, title: "Book", date: new Date(2023, 8, 25), price: 10 },
-    { id: 3, title: "Pen", date: new Date(2023, 2, 10), price: 1 },
-    { id: 4, title: "Laptop", date: new Date(2023, 9, 17), price: 200 },
-  ];
+  // Hint: Define the validation schema using Yup to validate email and password
+  // Hint: Email should be a valid email format and required
+  // Hint: Password should be at least 6 characters and required
+  
+  const validationSchema = Yup.object({
+    // Add your Yup validation here
+  });
+
+  const initialValues = {
+    // Hint: Set initial values for email and password fields (empty strings to start with)
+  };
+
+  // Hint: Create an onSubmit function that logs form values to the console when submitted
+ 
 
   return (
     <div>
-      <h2>Let's get Started</h2>
-      <Expenses expenses={expenses} />
+      <h1>Simple Login Form</h1>
+      <Formik
+        // Hint: Pass the initialValues, validationSchema, and onSubmit function here
+      >
+        {() => (
+          <Form>
+            {/* Email Field */}
+            <div>
+              <label htmlFor="email">Email</label>
+              <Field type="email" id="email" name="email" />
+              {/* Hint: Display ErrorMessage for email if validation fails */}
+             
+            </div>
+
+            {/* Password Field */}
+            <div>
+              <label htmlFor="password">Password</label>
+              {/* Add the field type password  */}
+              {/* Hint: Display ErrorMessage for password if validation fails */}
+            </div>
+
+           
+            <button type="submit">Submit</button> 
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }
