@@ -1,22 +1,28 @@
-import React from "react";
-import useFetch from "./hooks/useFetch";
-import useFetch from "./components/CustomHooks/useFetch";
-const App = () => {
-  const { data, loading, error } = useFetch("https://jsonplaceholder.typicode.com/posts?_limit=10");
+import React, { Fragment } from "react";
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+const dummyUsers = [
+  { id: 1, name: "Alice", occupation: "Software Engineer", salary: "$80,000", age: 25 },
+  { id: 2, name: "Bob", occupation: "Data Analyst", salary: "$70,000", age: 28 },
+  { id: 3, name: "Charlie", occupation: "Product Manager", salary: "$90,000", age: 30 },
+  { id: 4, name: "David", occupation: "UX Designer", salary: "$75,000", age: 27 },
+];
 
+export default function App() {
   return (
-    <div>
-      <h1>Fetched Data</h1>
+    <>
+      <h1>React Fragment Behind the Scenes</h1>
       <ul>
-        {data.map((item) => (
-          <li key={item.id}>{item.title}</li>
+        {dummyUsers.map(user => (
+          <Fragment key={user.id}>
+            <li>
+              <h2>{user.name}</h2>
+              <p>Occupation: {user.occupation}</p>
+              <p>Salary: {user.salary}</p>
+              <p>Age: {user.age}</p>
+            </li>
+          </Fragment>
         ))}
       </ul>
-    </div>
+    </>
   );
-};
-
-export default App;
+}
